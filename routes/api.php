@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\ConsesionariaController;
+use App\Http\Controllers\OperativoController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ Route::controller(UserController::class)->prefix('users')->group(function() {
 Route::controller(ConductorController::class)->prefix('conductores')->group(function() {
     Route::get('/{idInspector}', 'index');
     Route::post('/', 'store');
-    Route::get('/{conductor}', 'show');
+    Route::get('show/{conductor}', 'show');
     Route::post('update/{conductor}', 'update');
     Route::post('delete/{conductor}', 'destroy');
 });
@@ -46,4 +47,12 @@ Route::controller(TransporteController::class)->prefix('transportes')->group(fun
     Route::get('/{transporte}', 'show');
     Route::post('update/{transporte}', 'update');
     Route::post('delete/{transporte}', 'destroy');
+});
+
+Route::controller(OperativoController::class)->prefix('operativos')->group(function() {
+    Route::get('/{idInspector}', 'index');
+    Route::post('/', 'store');
+    Route::get('show/{operativo}', 'show');
+    Route::post('update/{operativo}', 'update');
+    Route::post('delete/{operativo}', 'destroy');
 });

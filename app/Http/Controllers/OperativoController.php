@@ -5,55 +5,69 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOperativoRequest;
 use App\Http\Requests\UpdateOperativoRequest;
 use App\Models\Operativo;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class OperativoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($idInspector): JsonResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Operativos obtenidos con exito",
+            'data' => Operativo::where('idInspector', $idInspector)->get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOperativoRequest $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $operativo = Operativo::create([
+            'fecha' => $request->fecha,
+            'hora' => $request->hora,
+            'ubicacion' => $request->ubicacion,
+            'idInspector' => $request->idInspector,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => "Operativo regitrado con exito",
+            'data' => $operativo
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Operativo $operativo)
+    public function show(Operativo $operativo): JsonResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Operativo $operativo)
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Operativo obtenido con exito",
+            'data' => $operativo
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOperativoRequest $request, Operativo $operativo)
+    public function update(Request $request, Operativo $operativo)
     {
-        //
+        $operativo->fecha = $request->fecha;
+        $operativo->hora = $request->hora;
+        $operativo->ubicacion = $request->ubicacion;
+        $operativo->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Operativo actualizado con exito",
+            'data' => $operativo
+        ]);
     }
 
     /**
@@ -61,6 +75,10 @@ class OperativoController extends Controller
      */
     public function destroy(Operativo $operativo)
     {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Operativo eliminado con exito",
+            'data' => $operativo->delete()
+        ]);
     }
 }
