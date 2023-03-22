@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\ConsesionariaController;
+use App\Http\Controllers\ObservacionesController;
 use App\Http\Controllers\OperativoController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\TransportexOperativoController;
@@ -63,4 +64,12 @@ Route::controller(TransportexOperativoController::class)->prefix('transportes_op
     Route::post('/', 'store');
     Route::get('show/{transportexOperativo}', 'show');
     Route::post('delete/{transportexOperativo}', 'destroy');
+});
+
+Route::controller(ObservacionesController::class)->prefix('observaciones_transportes_operativos')->group(function() {
+    Route::get('/{idTransportexOperativo}', 'index');
+    Route::post('/', 'store');
+    Route::get('show/{observaciones}', 'show');
+    Route::post('update/{observaciones}', 'update');
+    Route::post('delete/{observaciones}', 'destroy');
 });

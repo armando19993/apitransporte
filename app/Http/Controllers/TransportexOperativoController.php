@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTransportexOperativoRequest;
 use App\Http\Requests\UpdateTransportexOperativoRequest;
 use App\Models\Operativo;
 use App\Models\TransportexOperativo;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TransportexOperativoController extends Controller
@@ -25,7 +26,7 @@ class TransportexOperativoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $relacion = TransportexOperativo::create([
             'idOperativo' => $request->idOperativo,
@@ -42,7 +43,7 @@ class TransportexOperativoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TransportexOperativo $transportexOperativo)
+    public function show(TransportexOperativo $transportexOperativo): JsonResponse
     {
         return response()->json([
             'status' => true,
@@ -54,7 +55,7 @@ class TransportexOperativoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TransportexOperativo $transportexOperativo)
+    public function destroy(TransportexOperativo $transportexOperativo): JsonResponse
     {
         return response()->json([
             'status' => true,
