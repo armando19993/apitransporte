@@ -5,31 +5,39 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreConsesionariaRequest;
 use App\Http\Requests\UpdateConsesionariaRequest;
 use App\Models\Consesionaria;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ConsesionariaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Consesionarias obtenidas con exito",
+            'data' => Consesionaria::all()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreConsesionariaRequest $request)
+    public function store(Request $request)
     {
-        //
+        $consesionaria = Consesionaria::create([
+            'nombre' => $request->nombre,
+            'ruc' => $request->ruc,
+            'email' => $request->email
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => "Consesionaria registrada con exito",
+            'data' => $consesionaria
+        ]);
     }
 
     /**
@@ -37,23 +45,28 @@ class ConsesionariaController extends Controller
      */
     public function show(Consesionaria $consesionaria)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Consesionaria $consesionaria)
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Consesionaria obtenida con exito",
+            'data' => $consesionaria
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateConsesionariaRequest $request, Consesionaria $consesionaria)
+    public function update(Request $request, Consesionaria $consesionaria)
     {
-        //
+        $consesionaria->nombre = $request->nombre;
+        $consesionaria->ruc = $request->ruc;
+        $consesionaria->email = $request->email;
+        $consesionaria->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Consesionaria actualizada con exito",
+            'data' => $consesionaria
+        ]);
     }
 
     /**
@@ -61,6 +74,10 @@ class ConsesionariaController extends Controller
      */
     public function destroy(Consesionaria $consesionaria)
     {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Consesionaria eliminada con exito",
+            'data' => $consesionaria->delete()
+        ]);
     }
 }

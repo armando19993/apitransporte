@@ -12,6 +12,6 @@ class Consesionaria extends Model
     protected $fillable = [
         'nombre',
         'ruc',
-        'email',
+        'email'
     ];
 }
