@@ -25,7 +25,7 @@ class ConsesionariaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $consesionaria = Consesionaria::create([
             'nombre' => $request->nombre,
@@ -43,7 +43,7 @@ class ConsesionariaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Consesionaria $consesionaria)
+    public function show(Consesionaria $consesionaria): JsonResponse
     {
         return response()->json([
             'status' => true,
@@ -55,7 +55,7 @@ class ConsesionariaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Consesionaria $consesionaria)
+    public function update(Request $request, Consesionaria $consesionaria): JsonResponse
     {
         $consesionaria->nombre = $request->nombre;
         $consesionaria->ruc = $request->ruc;
@@ -72,7 +72,7 @@ class ConsesionariaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Consesionaria $consesionaria)
+    public function destroy(Consesionaria $consesionaria): JsonResponse
     {
         return response()->json([
             'status' => true,

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\ConsesionariaController;
+use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +38,12 @@ Route::controller(ConsesionariaController::class)->prefix('consesionarias')->gro
     Route::get('/{consesionaria}', 'show');
     Route::post('update/{consesionaria}', 'update');
     Route::post('delete/{consesionaria}', 'destroy');
+});
+
+Route::controller(TransporteController::class)->prefix('transportes')->group(function() {
+    Route::get('/', 'index');
+    Route::post('/', 'store');
+    Route::get('/{transporte}', 'show');
+    Route::post('update/{transporte}', 'update');
+    Route::post('delete/{transporte}', 'destroy');
 });
