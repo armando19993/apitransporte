@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Consesionaria extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'ruc',
+        'email',
+    ];
 }
