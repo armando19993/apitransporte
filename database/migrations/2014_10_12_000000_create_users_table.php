@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('contrasena', 80);
             $table->string('usuario', 80);
             $table->integer('rol');
+            $table->integer('idAdministrador')->nullable(); //Este campo se agrega para filtrar los inspectores de cada administrador
             $table->timestamps();
         });
     }
