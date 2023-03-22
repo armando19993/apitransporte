@@ -13,7 +13,8 @@ class Conductor extends Model
         'nombre_apellido',
         'dni',
         'celular',
-        'anios_exp;eriencia',
+        'anios_experiencia',
         'numero_licencia',
+        'idInspector'
     ];
 }

@@ -20,3 +20,11 @@ Route::controller(UserController::class)->prefix('users')->group(function() {
     Route::post('updateContrasena/{user}', 'updateContrasena');
     Route::post('deleteInspector/{inspector}', 'deleteInspector');
 });
+
+Route::controller(UserController::class)->prefix('conductores')->group(function() {
+    Route::get('/', 'index');
+    Route::post('/', 'store');
+    Route::get('/{conductor}', 'show');
+    Route::post('update/{conductor}', 'update');
+    Route::post('delete/{conductor}', 'destroy');
+});

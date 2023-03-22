@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('celular', 80);
             $table->integer('anios_experiencia');
             $table->string('numero_licencia', 9);
+            $table->unsignedBigInteger('idInspector');
+            $table->foreign('idInspector')->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

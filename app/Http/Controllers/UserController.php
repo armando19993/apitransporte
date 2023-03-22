@@ -100,7 +100,7 @@ class UserController extends Controller
         }
     }
 
-    public function deleteInspector(User $inspector)
+    public function deleteInspector(User $inspector): JsonResponse
     {
         $inspector->delete();
 
