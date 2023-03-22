@@ -4,32 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTransportexOperativoRequest;
 use App\Http\Requests\UpdateTransportexOperativoRequest;
+use App\Models\Operativo;
 use App\Models\TransportexOperativo;
+use Illuminate\Http\Request;
 
 class TransportexOperativoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($idOperativo)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Relaciones obtenidas con exito",
+            'data' => Operativo::where('idOperativo', $idOperativo)->get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTransportexOperativoRequest $request)
+    public function store(Request $request)
     {
-        //
+        $relacion = TransportexOperativo::create([
+            'idOperativo' => $request->idOperativo,
+            'idTransporte' => $request->idTransporte,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => "Relacion creada con exito",
+            'data' =>$relacion
+        ]);
     }
 
     /**
@@ -37,23 +44,11 @@ class TransportexOperativoController extends Controller
      */
     public function show(TransportexOperativo $transportexOperativo)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TransportexOperativo $transportexOperativo)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTransportexOperativoRequest $request, TransportexOperativo $transportexOperativo)
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Relacion creada con exito",
+            'data' => $transportexOperativo
+        ]);
     }
 
     /**
@@ -61,6 +56,10 @@ class TransportexOperativoController extends Controller
      */
     public function destroy(TransportexOperativo $transportexOperativo)
     {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => "Relacion eliminada con exito",
+            'data' => $transportexOperativo->delete()
+        ]);
     }
 }

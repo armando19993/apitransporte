@@ -4,6 +4,7 @@ use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\ConsesionariaController;
 use App\Http\Controllers\OperativoController;
 use App\Http\Controllers\TransporteController;
+use App\Http\Controllers\TransportexOperativoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -55,4 +56,11 @@ Route::controller(OperativoController::class)->prefix('operativos')->group(funct
     Route::get('show/{operativo}', 'show');
     Route::post('update/{operativo}', 'update');
     Route::post('delete/{operativo}', 'destroy');
+});
+
+Route::controller(TransportexOperativoController::class)->prefix('transportes_operativos')->group(function() {
+    Route::get('/{idOperativo}', 'index');
+    Route::post('/', 'store');
+    Route::get('show/{transportexOperativo}', 'show');
+    Route::post('delete/{transportexOperativo}', 'destroy');
 });
