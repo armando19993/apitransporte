@@ -11,15 +11,16 @@ class UserController extends Controller
     public function register(Request $request): JsonResponse
     {
         $user = User::create([
-            'nombre' => $request,
-            'apellido' => $request,
-            'dni' => $request,
-            'direccion' => $request,
-            'fecha_nacimiento' => $request,
-            'sexo' => $request,
-            'contrasena' => $request,
-            'usuario' => $request,
-            'rol' => $request,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'dni' => $request->dni,
+            'direccion' => $request->direccion,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'sexo' => $request->sexo,
+            'contrasena' => $request->contrasena,
+            'usuario' => $request->usuario,
+            'rol' => $request->rol,
+            'idAdministrador' => $request->idAdministrador,
         ]);
 
         return response()->json([

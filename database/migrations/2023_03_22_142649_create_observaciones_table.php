@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('observaciones', function (Blueprint $table) {
             $table->id();
             $table->boolean('estado');
-            $table->string('tipoObservacion', 80);
-            $table->string('descripcion', 200);
+            $table->string('tipoObservacion', 80)->nullable();
+            $table->string('descripcion', 200)->nullable();
             $table->unsignedBigInteger('idTransportexOperativo');
 
             $table->foreign('idTransportexOperativo')->references("id")->on("transportex_operativos")->onDelete("cascade")->onUpdate("cascade");
